@@ -1,0 +1,24 @@
+---
+
+- name: Set default set_fact
+  set_fact:
+    default_interface: "{{ ansible_facts.default_ipv4.interface }}"
+
+- name: Run tcpdump on default network interface
+  command: tcpdump -nn -v -i "{{ default_interface }}" -s 1500 -c 1 'ether[20:2] == 0x2000'
+  register: tcpdump
+
+- name: Set default set_fact variables
+  set_fact:
+    tcpdump_switch: "{{ tcpdump.stdout | regex_search('10.[0-9]+.[0-9]+.[0-9]+') }}"
+    tcpdump_port: "{{ tcpdump.stdout | regex_search('GigabitEthernet+[0-9]+/[0-9]+/[0-9]+') }}"
+    tcpdump_vlan: "{{ tcpdump.stdout | regex_search('bytes: [0-9]+') | regex_replace('bytes: ') }}"
+
+- name: Print tcpdump relevant information
+  no_log: false
+  debug:
+    msg:
+      - "Nework interface: {{ default_interface }}"
+      - "Switch IP: {{ tcpdump_switch }}"
+      - "Port: {{ tcpdump_port }}"
+      - "Vlan: {{ tcpdump_vlan }}"
