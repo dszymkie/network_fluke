@@ -1,8 +1,8 @@
 ---
 
-- name: Set default set_fact
+- name: Set en4 interface
   set_fact:
-    default_interface: "{{ ansible_facts.default_ipv4.interface }}"
+    default_interface: "en4"
 
 - name: Run tcpdump on default network interface
   command: tcpdump -nn -v -i "{{ default_interface }}" -s 1500 -c 1 'ether[20:2] == 0x2000'
