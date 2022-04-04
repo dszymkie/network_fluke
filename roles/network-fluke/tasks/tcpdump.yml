@@ -1,6 +1,6 @@
 ---
 
-- name: Run tcpdump on default network interface
+- name: Run tcpdump on specified network port
   command: tcpdump -nn -v -i en4 -s 1500 -c 1 'ether[20:2] == 0x2000'
   register: tcpdump
 
