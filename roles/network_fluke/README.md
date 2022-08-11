@@ -13,7 +13,7 @@ Role Variables
       vars:
         become: true
         become_method: sudo
-        ansible_python_interpreter: "{{ansible_playbook_python}}"
+        ansible_python_interpreter: "{{ ansible_playbook_python }}"
       children:
 ```
 
