@@ -1,14 +1,14 @@
 ---
 
-- name: Set default_interface set_fact variable
+- name: Set default_interface
   set_fact:
     default_interface: "{{ ansible_default_ipv4.interface }}"
 
-- name: Run tcpdump on specified network port
+- name: Run tcpdump on default_interface
   command: tcpdump -nn -v -i "{{ default_interface }}" -s 1500 -c 1 'ether[20:2] == 0x2000'
   register: tcpdump
 
-- name: Set default set_fact variables
+- name: Set tcpdump variables
   set_fact:
     tcpdump_switch: "{{ tcpdump.stdout | regex_search('10.[0-9]+.[0-9]+.[0-9]+') }}"
     tcpdump_port: "{{ tcpdump.stdout | regex_search('GigabitEthernet+[0-9]+/[0-9]+/[0-9]+') }}"
