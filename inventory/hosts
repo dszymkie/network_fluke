@@ -1,6 +1,11 @@
 ---
 
-all:
-    hosts:
-        localhost:
-            ansible_connection: local
+# HOSTS ALL
+hosts_all:
+  vars:
+    become: true
+    become_method: sudo
+  children:
+    # LOCALHOST
+    localhost:
+      ansible_connection: local
