@@ -63,5 +63,5 @@ Deployment
 
 ```python
 # Deployment
-ansible-playbook playbooks/network_fluke.yml -i inventory/hosts
+ansible-playbook playbooks/network_fluke.yml
 ```
