@@ -13,13 +13,17 @@ Role Variables
       vars:
         become: true
         become_method: sudo
+        ansible_python_interpreter: "{{ansible_playbook_python}}"
+      children:
 ```
 
 ### Inventory localhost vars:
 ```yaml
     # LOCALHOST
-    localhost:
-      ansible_connection: local
+    hosts_localhost:
+      hosts:
+        localhost:
+          ansible_connection: local
 ```
 
 ### Playbooks/network_fluke.yml vars:
