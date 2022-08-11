@@ -29,6 +29,18 @@ Role Variables
         ignore_errors: true
 ```
 
+Dependencies
+------------
+
+```python
+roles/requirements.yml
+```
+```yaml
+    - collections:
+
+      - community.general
+```
+
 Playbooks/network_fluke.yml
 ----------------
 
