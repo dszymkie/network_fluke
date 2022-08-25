@@ -54,8 +54,7 @@ Playbooks/network_fluke.yml
       ignore_errors: true
 
       roles:
-        - role:
-            network_fluke
+        - { role: network_fluke }
 ```
 
 Deployment
