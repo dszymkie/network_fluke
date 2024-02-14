@@ -5,7 +5,7 @@
     default_interface: "{{ ansible_default_ipv4.interface }}"
 
 - name: Run tcpdump on default_interface
-  ansible.builtin.command: sudo tcpdump -nn -v -i "{{ default_interface }}" -s 1500 -c 1 'ether[20:2] == 0x2000'
+  ansible.builtin.command: tcpdump -nn -v -i "{{ default_interface }}" -s 1500 -c 1 'ether[20:2] == 0x2000'
   register: tcpdump
 
 - name: Set tcpdump variables
