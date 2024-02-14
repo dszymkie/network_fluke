@@ -8,8 +8,8 @@ Role Variables
 
 ### Inventory global vars:
 ```yaml
-    # HOSTS ALL
-    hosts_all:
+    # HOSTS
+    hosts:
       vars:
         become: true
         become_method: sudo
@@ -20,7 +20,7 @@ Role Variables
 ### Inventory localhost vars:
 ```yaml
     # LOCALHOST
-    hosts_localhost:
+    local:
       hosts:
         localhost:
           ansible_connection: local
@@ -28,7 +28,7 @@ Role Variables
 
 ### Playbooks/network_fluke.yml vars:
 ```yaml
-      - hosts: localhost
+      - hosts: local
         gather_facts: true
         ignore_errors: true
 ```
@@ -49,7 +49,7 @@ Playbooks/network_fluke.yml
 ----------------
 
 ```yaml
-    - hosts: localhost
+    - hosts: local
       gather_facts: true
       ignore_errors: true
 
